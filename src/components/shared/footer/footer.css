@@ -1,0 +1,11 @@
+.footer ul.list-inline {
+    margin-bottom: 0px;
+}
+
+.footer ul.list-inline .list-inline-item {
+    font-size: 13px;
+}
+
+.footer ul.list-inline .list-inline-item a {
+    color: #ffffff;
+}

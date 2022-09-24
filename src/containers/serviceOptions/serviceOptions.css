@@ -1,0 +1,9 @@
+section {
+  background-color: rgb(248, 249, 250);
+}
+.service-boxs .col-6 .border.active {
+  border-color: #0070b9 !important;
+}
+.service-boxs .col-6 .border p {
+  min-height: 80px;
+}

@@ -1,0 +1,35 @@
+.steps-bar{
+    height: 5px;
+    background-color: #f2f2f2;
+}
+.steps-bar span{
+    width: 20px;
+    height: 20px;
+    border: #d7dbdd solid 3px;
+    border-radius: 100%;
+    background-color: #fcfcfc;
+    margin-top: -8px;
+    position: relative;
+    line-height: 0px;
+}
+.steps-bar span img{
+    display: none;
+}
+.steps-bar span.current::after{
+    position: absolute;
+    display: block;
+    left: -7px;
+    top: 1px;
+    content: "";
+    width: 28px;
+    height: 28px;
+    border: #47aaeb solid 3px;
+    border-radius: 100%;
+    margin-top: -8px;
+}
+.steps-bar span.active{
+    border: none;
+}
+.steps-bar span.active img{
+    display: block;
+}
