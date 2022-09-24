@@ -1,20 +1,41 @@
-import axios from "axios";
-import endpoints from "../constants/endpoints";
+import http from "../http-common";
 
-export const fetchTransactionApi = () => {
-  return axios.get(`${endpoints.transactions}`);
+const getAll = () => {
+  return http.get("/tutorials");
 };
 
-export const addTransactionApi = (payload) =>
-  axios.post(endpoints.transactions, payload);
-
-export const editTransactionApi = (payload, id) =>
-  axios.patch(endpoints.editDeleteTransaction(id), payload);
-
-export const deleteTransactionApi = (id) => {
-  return axios.delete(endpoints.editDeleteTransaction(id));
+const get = id => {
+  return http.get(`/tutorials/${id}`);
 };
 
-export const detailsTransactionApi = (id) => {
-  return axios.get(endpoints.editDeleteTransaction(id));
+const create = data => {
+  return http.post("/tutorials", data);
 };
+
+const update = (id, data) => {
+  return http.put(`/tutorials/${id}`, data);
+};
+
+const remove = id => {
+  return http.delete(`/tutorials/${id}`);
+};
+
+const removeAll = () => {
+  return http.delete(`/tutorials`);
+};
+
+const findByTitle = title => {
+  return http.get(`/tutorials?title=${title}`);
+};
+
+const TutorialService = {
+  getAll,
+  get,
+  create,
+  update,
+  remove,
+  removeAll,
+  findByTitle
+};
+
+export default TutorialService;

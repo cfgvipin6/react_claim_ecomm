@@ -1,18 +1,34 @@
-import React, {useState} from "react";
-import { useNavigate, useLocation } from 'react-router-dom'
-import Stepper from "../../components/shared/stepBar/stepper";
-import ItemDetails from "../../components/shared/itemDetails/itemDetails";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Card, ItemDetails, Stepper } from "../../components";
 import MaintenanceImg from "../../assets/images/maintenance-icon.svg";
-function ServiceOptions() {
-  const [flag, setFlag] = useState('Service Fulfillment')
-  const history = useNavigate()
-const location = useLocation()
-const { pathname } = location
+import { saveServiceOptions } from "../claimSlice";
 
-const handleStep = () => {
-  history('/serviceFulfillment')
-  setFlag(flag)
-}
+function ServiceOptions() {
+  const [flag, setFlag] = useState("Service Fulfillment");
+  const [data, setData] = useState({});
+  const history = useNavigate();
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const claimsData = useSelector((state) => state.claims);
+
+  console.log(claimsData, "ServiceOptions");
+
+  const { pathname } = location;
+
+  const handleStep = () => {
+    dispatch(
+      saveServiceOptions({
+        data,
+      })
+    );
+    history("/serviceFulfillment");
+    setFlag(flag);
+  };
+  const stepBack = () => {
+    history(-1);
+  };
   return (
     <>
       <div className="row bg-light py-4">
@@ -65,56 +81,38 @@ const handleStep = () => {
               </div>
               <div className="row g-4 pt-4 service-boxs">
                 <div className="col-6">
-                  <div className="border border-3 rounded-3 p-3 active">
-                    <h6 className="d-flex align-items-center">
-                      <img
-                        src={MaintenanceImg}
-                        alt="maintenance"
-                        width="35"
-                        className="me-3"
-                      />{" "}
-                      Schedule a visit
-                    </h6>
-                    <p>
-                    Make an appointment at an Pocket Geek Authorized Service Provider
-                    </p>
+                  <Card
+                    imgSrc={MaintenanceImg}
+                    title="Schedule a visit"
+                    description="Make an appointment at an Pocket Geek Authorized Service Provider"
+                  >
                     <div className="d-flex justify-content-between">
                       <span>Deductible:</span> <span>$89.00</span>
                     </div>
-                  </div>
+                  </Card>
                 </div>
                 <div className="col-6">
-                  <div className="border border-3 rounded-3 p-3">
-                    <h6 className="d-flex align-items-center">
-                      <img
-                        src={MaintenanceImg}
-                        alt="maintenance"
-                        width="35"
-                        className="me-3"
-                      />{" "}
-                      Send in for repair
-                    </h6>
-                    <p>
-                    A courier will pick up your product and deliver it to Pocket Geek
-                    </p>
+                  <Card
+                    imgSrc={MaintenanceImg}
+                    title="Send in for repair"
+                    description="A courier will pick up your product and deliver it to
+                    Pocket Geek"
+                  >
                     <div className="d-flex justify-content-between">
                       <span>Deductible:</span> <span>$89.00</span>
                     </div>
-                  </div>
+                  </Card>
                 </div>
                 <div className="col-6">
-                  <div className="border border-3 rounded-3 p-3">
-                    <h6 className="d-flex align-items-center">
-                      <img
-                        src={MaintenanceImg}
-                        alt="maintenance"
-                        width="35"
-                        className="me-3"
-                      />{" "}
-                      Contact us
-                    </h6>
-                    <p>Talk to an Pocket Geek Support Advisor</p>
-                  </div>
+                  <Card
+                    imgSrc={MaintenanceImg}
+                    title="Contact us"
+                    description="Talk to an Pocket Geek Support Advisor"
+                  >
+                    <div className="d-flex justify-content-between">
+                      <span>Deductible:</span> <span>$89.00</span>
+                    </div>
+                  </Card>
                 </div>
               </div>
               <div className="row align-items-center justify-content-between pt-4">
@@ -122,16 +120,19 @@ const handleStep = () => {
                   <button
                     type="button"
                     className="btn btn-outline-primary py-2 px-4"
+                    onClick={stepBack}
                   >
                     Back
                   </button>
                 </div>
                 <div className="col-auto">
-                  <button type="button" className="btn btn-primary py-2 px-4"  onClick={handleStep}>
+                  <button
+                    type="button"
+                    className="btn btn-primary py-2 px-4"
+                    onClick={handleStep}
+                  >
                     Next
                   </button>
-                  {/* <button [routerLink]="['/service-fulfillment']" type="button"
-                            className="btn btn-primary py-2 px-4">Next</button> */}
                 </div>
               </div>
             </div>

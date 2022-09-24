@@ -1,8 +1,8 @@
 import React from "react";
-import ConfirmImg from "../../assets/images/confirm-icon.png";
 import BarclayImg from "../../assets/images/barclay-card.png";
+import ConfirmImg from "../../assets/images/confirm-icon.png";
 
-import ItemDetails from "../../components/shared/itemDetails/itemDetails";
+import { ItemDetails } from "../../components";
 
 function ClaimPlaced() {
   return (

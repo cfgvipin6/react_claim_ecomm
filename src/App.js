@@ -24,12 +24,10 @@ import ClaimSummary from "./containers/claimSummary/claimSummary";
 import ClaimPlaced from './containers/claimPlaced/claimPlaced';
 
 function App() {
-  const isSpinner = useSelector((state) => state.transaction.isSpinner);
   return (
     <Container>
       <Header />
       <ClaimBar />
-      {isSpinner && <Loader show={true} />}
       <div className="container">
         <Router>
           <Routes>
@@ -37,20 +35,19 @@ function App() {
               path="/"
               element={<Navigate replace to="/fileClaim" />}
             />
-            <Route path="/fileClaim" element={<FileClaim />}>
-              {/* <Route path=":id" element={<TransactionDetails />} /> */}
-            </Route>
-            <Route path="/incidentInfo" element={<IncidentInfo />}></Route>
-            <Route path="/serviceOptions" element={<ServiceOptions />}></Route>
+            <Route path="/fileClaim" element={<FileClaim />} />
+     
+            <Route path="/incidentInfo" element={<IncidentInfo />}/>
+            <Route path="/serviceOptions" element={<ServiceOptions />}/>
             <Route
               path="/serviceFulfillment"
               element={<ServiceFulfillment />}
-            ></Route>
+            />
             <Route
               path="/claimSummary"
               element={<ClaimSummary />}
-            ></Route>
-            <Route path="/claimPlaced" element={<ClaimPlaced />}></Route>
+            />
+            <Route path="/claimPlaced" element={<ClaimPlaced />}/>
           </Routes>
         </Router>
       </div>

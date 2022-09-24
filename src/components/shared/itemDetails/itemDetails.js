@@ -2,12 +2,12 @@ import React from "react";
 import "./itemDetails.css";
 
 import Shopping from "../../../assets/images/shopping.png";
-function ItemDetails() {
+export const ItemDetails = () => {
   return (
     <div className="bg-white rounded box-shadow p-4 policy-asset">
       <div className="row flex-nowrap align-items-center">
         <div className="col-auto">
-          <img src={Shopping} alt="shopping" style={{maxWidth: "70px"}} />
+          <img src={Shopping} alt="shopping" style={{ maxWidth: "70px" }} />
         </div>
         <div className="col">
           <h5 className="m-0">Diane's Macbook</h5>
@@ -48,6 +48,4 @@ function ItemDetails() {
       </div>
     </div>
   );
-}
-
-export default ItemDetails;
+};

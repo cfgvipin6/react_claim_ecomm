@@ -1,7 +1,6 @@
 import React from "react";
 import './header.css';
 import PGH from '../../../assets/images/pgh-logo.svg';
-
 const navMenu = ['Home','Account','My Devices', 'Tech services'] 
 
 const Header = () => {
