@@ -1,20 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Datepicker, Dropdown, ItemDetails, Stepper } from "../../components";
+import {
+  Datepicker,
+  Dropdown,
+  ItemDetails,
+  Stepper,
+  Button,
+} from "../../components";
 import { REASON_FOR_CLAIM } from "../../constants/mockData";
+import { showToast } from "../../utils/Helper";
 import { saveIncidentInfo } from "../claimSlice";
 import "./incidentInfo.css";
 
 const IncidentInfo = () => {
   const claimsData = useSelector((state) => state.claims);
 
-  console.log(claimsData, "claimsData");
   const history = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
 
-  const [flag, setFlag] = useState("Service Options");
   const [incidentData, setIncidentData] = useState({
     isComplete: false,
     data: {},
@@ -26,21 +31,15 @@ const IncidentInfo = () => {
     if (Object.keys(incidentData.data)?.length) {
       dispatch(
         saveIncidentInfo({
-          data: incidentData.data,
+          incidentData,
         })
       );
       history("/serviceOptions");
-      setFlag(flag);
-    }
-  };
-
-  const stepBack = () => {
-    history(-1);
+    } else showToast("Please fill details", "error");
   };
 
   const handleChange = (e) => {
     const { name, value, checked, type } = e.target;
-    // console.log("target", name, value, type);
     const { isComplete, data } = incidentData;
     const updateData = {
       ...data,
@@ -48,6 +47,17 @@ const IncidentInfo = () => {
     };
     setIncidentData({ ...incidentData, data: updateData });
   };
+
+  useEffect(() => {
+    const keys = Object.keys(claimsData);
+    if (keys?.length && keys.includes("step1")) {
+      const {
+        step1: { isComplete, data },
+      } = claimsData;
+      // console.log("prevData", isComplete, data);
+      setIncidentData({ ...incidentData, isComplete: isComplete, data: data });
+    }
+  }, [claimsData]);
 
   return (
     <>
@@ -62,7 +72,12 @@ const IncidentInfo = () => {
               style={{ backgroundColor: "#fcfcfc" }}
             >
               <h6 className="m-0 p-0 fw-bold">Incident Information</h6>
-              <Stepper flag={flag} pathName={pathname}></Stepper>
+              <Stepper
+                current="1"
+                total="4"
+                flag="Service Options"
+                pathName={pathname}
+              ></Stepper>
             </div>
             <div className="p-4">
               <span className="d-block fw-bold mb-3">
@@ -92,7 +107,7 @@ const IncidentInfo = () => {
                   label="Select the reason for your claim/request."
                   options={REASON_FOR_CLAIM}
                   name="claimReason"
-                  value={incidentData.data?.claimReason}
+                  selectedValue={incidentData.data?.claimReason}
                   onChange={handleChange}
                 />
               </div>
@@ -112,22 +127,15 @@ const IncidentInfo = () => {
               </div>
               <div className="row align-items-center justify-content-between pt-4">
                 <div className="col-auto">
-                  <button
-                    type="button"
-                    className="btn btn-outline-primary py-2 px-4"
-                    onClick={stepBack}
-                  >
-                    Back
-                  </button>
+                  <Button label="Back" variant="outline" />
                 </div>
                 <div className="col-auto">
-                  <button
-                    type="button"
-                    className="btn btn-primary py-2 px-4"
-                    onClick={handleNext}
-                  >
-                    Next
-                  </button>
+                  <Button
+                    label="Next"
+                    variant="primary"
+                    isDisabled={!incidentData.data?.isTermAndCondition}
+                    click={handleNext}
+                  />
                 </div>
               </div>
             </div>

@@ -1,57 +1,53 @@
 import React from "react";
+import Container from "react-bootstrap/Container";
 import {
   BrowserRouter as Router,
-  Routes,
-  Route,
   Navigate,
+  Route,
+  Routes,
 } from "react-router-dom";
-import { useSelector } from "react-redux";
-import Container from "react-bootstrap/Container";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 //Components
-import Loader from "./components/shared/loader";
-import Header from "./components/shared/header/header";
 import ClaimBar from "./components/shared/claimBar/claimBar";
 import Footer from "./components/shared/footer/footer";
+import Header from "./components/shared/header/header";
 
 //Container
+import ClaimPlaced from "./containers/claimPlaced/claimPlaced";
+import ClaimSummary from "./containers/claimSummary/claimSummary";
 import FileClaim from "./containers/fileClaim/fileClaim";
 import IncidentInfo from "./containers/incidentInformation/incidentInfo";
-import ServiceOptions from "./containers/serviceOptions/serviceOptions";
+import Profile from "./containers/profile/profile";
 import ServiceFulfillment from "./containers/serviceFulfillment/serviceFulfillment";
-import ClaimSummary from "./containers/claimSummary/claimSummary";
-import ClaimPlaced from './containers/claimPlaced/claimPlaced';
+import ServiceOptions from "./containers/serviceOptions/serviceOptions";
+import ThanksScreen from "./containers/thanksScreen/thanksScreen";
 
 function App() {
   return (
     <Container>
-      <Header />
-      <ClaimBar />
-      <div className="container">
-        <Router>
+      <Router>
+        <Header />
+        <ClaimBar />
+        <div className="container">
           <Routes>
-            <Route
-              path="/"
-              element={<Navigate replace to="/fileClaim" />}
-            />
+            <Route path="/" element={<Navigate replace to="/fileClaim" />} />
             <Route path="/fileClaim" element={<FileClaim />} />
-     
-            <Route path="/incidentInfo" element={<IncidentInfo />}/>
-            <Route path="/serviceOptions" element={<ServiceOptions />}/>
+            <Route path="/profile" element={<Profile />} />
+
+            <Route path="/incidentInfo" element={<IncidentInfo />} />
+            <Route path="/serviceOptions" element={<ServiceOptions />} />
             <Route
               path="/serviceFulfillment"
               element={<ServiceFulfillment />}
             />
-            <Route
-              path="/claimSummary"
-              element={<ClaimSummary />}
-            />
-            <Route path="/claimPlaced" element={<ClaimPlaced />}/>
+            <Route path="/claimSummary" element={<ClaimSummary />} />
+            <Route path="/claimPlaced" element={<ClaimPlaced />} />
+            <Route path="/thanks" element={<ThanksScreen />} />
           </Routes>
-        </Router>
-      </div>
-      <Footer />
+        </div>
+        <Footer />
+      </Router>
       <ToastContainer icon={false} />
     </Container>
   );

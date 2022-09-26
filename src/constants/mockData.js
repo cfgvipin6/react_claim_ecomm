@@ -1,3 +1,5 @@
+import MaintenanceImg from "../assets/images/maintenance-icon.svg";
+
 export const REASON_FOR_CLAIM = [
   { id: 1, label: "select", value: "" },
   { id: 2, label: "Hardware Issue", value: "hardware issue" },
@@ -17,7 +19,6 @@ export const STILL_POSSESSION = [
   { label: "No, I do not have the device" },
 ];
 
-
 export const DAMAGE_DEVICE = [
   { label: "Yes, device fully damaged" },
   { label: "No, device partially damaged" },
@@ -26,4 +27,30 @@ export const DAMAGE_DEVICE = [
 export const MAILING_ADDRESS = [
   { label: "Same as policy" },
   { label: "New Address" },
+];
+
+export const SERVICE_OPTIONS = [
+  {
+    id: 1,
+    label: "Schedule a visit",
+    imgSrc: MaintenanceImg,
+    description:
+      "Make an appointment at an Pocket Geek Authorized Service Provider",
+    deductPrice: "$89.00",
+  },
+  {
+    id: 2,
+    label: "Send in for repair",
+    imgSrc: MaintenanceImg,
+    description:
+      "A courier will pick up your product and deliver it to Pocket Geek",
+    deductPrice: "$89.00",
+  },
+  {
+    id: 3,
+    label: "Contact us",
+    imgSrc: MaintenanceImg,
+    description: "Talk to an Pocket Geek Support Advisor",
+    deductPrice: "$89.00",
+  },
 ];

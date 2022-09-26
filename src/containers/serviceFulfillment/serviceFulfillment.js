@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ItemDetails, Stepper } from "../../components";
+import { ItemDetails, Stepper, Button } from "../../components";
 import { RadioBtn } from "../../components";
 import { MAILING_ADDRESS } from "../../constants/mockData";
 import { saveServiceFulfillment } from "../claimSlice";
 
 function ServiceFulfillment() {
-  const [flag, setFlag] = useState("Summary");
   const [data, setData] = useState({});
   const history = useNavigate();
   const location = useLocation();
@@ -15,7 +14,6 @@ function ServiceFulfillment() {
   const { pathname } = location;
 
   const claimsData = useSelector((state) => state.claims);
-  console.log(claimsData, "ServiceFulfillment");
 
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -29,12 +27,19 @@ function ServiceFulfillment() {
       })
     );
     history("/claimSummary");
-    setFlag(flag);
   };
 
-  const stepBack = () => {
-    history(-1);
-  };
+  useEffect(() => {
+    const keys = Object.keys(claimsData);
+    if (keys?.length && keys.includes("step3")) {
+      const {
+        step3,
+      } = claimsData;
+      // console.log("prevData", step3);
+      setData({ ...data, ...step3 });
+    }
+  }, [claimsData]);
+
   return (
     <>
       <div className="row bg-light py-4">
@@ -48,7 +53,7 @@ function ServiceFulfillment() {
               style={{ backgroundColor: "#fcfcfc" }}
             >
               <h6 className="m-0 p-0 fw-bold">Service Fulfillment</h6>
-              <Stepper flag={flag} pathName={pathname}></Stepper>
+              <Stepper current="3" total="4" flag="Summary" pathName={pathname}></Stepper>
             </div>
             <div className="p-4">
               <span className="d-block fw-bold mb-3">Mail in Repair</span>
@@ -86,22 +91,17 @@ function ServiceFulfillment() {
               </p>
               <div className="row align-items-center justify-content-between pt-4">
                 <div className="col-auto">
-                  <button
-                    type="button"
-                    className="btn btn-outline-primary py-2 px-4"
-                    onClick={stepBack}
-                  >
-                    Back
-                  </button>
+                  <Button label="Back" variant="outline" />
                 </div>
                 <div className="col-auto">
-                  <button
+                  <Button label="Next" variant="primary" click={handleStep} />
+                  {/* <button
                     type="button"
                     className="btn btn-primary py-2 px-4"
                     onClick={handleStep}
                   >
                     Next
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>

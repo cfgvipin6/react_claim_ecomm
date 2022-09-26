@@ -1,10 +1,19 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import BarclayImg from "../../assets/images/barclay-card.png";
 import ConfirmImg from "../../assets/images/confirm-icon.png";
-
-import { ItemDetails } from "../../components";
+import { ItemDetails, Button } from "../../components";
+import IncidentInfoView from "../incidentInformation/incidentInfoView";
+import ProfileView from "../profile/profileView";
 
 function ClaimPlaced() {
+  const history = useNavigate();
+  const storeData = useSelector((state) => state.claims);
+  const { profile, step1 } = storeData;
+
+  const goToDashboard = () => history("/thanks");
+
   return (
     <>
       <div className="row bg-light py-4">
@@ -73,7 +82,8 @@ function ClaimPlaced() {
               <div className="d-flex justify-content-between border-bottom py-3">
                 <span className="d-block fw-bold">Claim Details</span>
               </div>
-              <div className="d-flex justify-content-between border-bottom py-3">
+              <IncidentInfoView incidentDetails={step1?.data} />
+              {/* <div className="d-flex justify-content-between border-bottom py-3">
                 <span className="d-block">Date of incident</span>
                 <p className="mb-0">03/10/2019</p>
               </div>
@@ -84,11 +94,13 @@ function ClaimPlaced() {
               <div className="d-flex justify-content-between border-bottom py-3">
                 <span className="d-block">Description</span>
                 <p className="mb-0">Demo text here.</p>
-              </div>
+              </div> */}
               <div className="d-flex justify-content-between py-3">
                 <span className="d-block fw-bold">Fulfillment Information</span>
                 <p className="mb-0">
-                  <a href="">Need A Different Repair Option</a>
+                  <Link to="/serviceOptions">
+                    Need A Different Repair Option
+                  </Link>
                 </p>
               </div>
               <div className="d-flex justify-content-between border-bottom py-3">
@@ -104,7 +116,7 @@ function ClaimPlaced() {
               <div className="d-flex justify-content-between border-bottom py-3">
                 <span className="d-block fw-bold">Personal Informaton</span>
                 <p className="mb-0 fw-bold">
-                  <a href="">
+                  <Link to="/profile">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -116,28 +128,10 @@ function ClaimPlaced() {
                       <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
                     </svg>{" "}
                     Edit
-                  </a>
+                  </Link>
                 </p>
               </div>
-              <div className="d-flex justify-content-between border-bottom py-3">
-                <span className="d-block">Full Name</span>
-                <p className="mb-0">Abc</p>
-              </div>
-              <div className="d-flex justify-content-between border-bottom py-3">
-                <span className="d-block">Address</span>
-                <p className="mb-0 text-end">
-                  123 Main Street <br />
-                  Atlanta, Georga 30031
-                </p>
-              </div>
-              <div className="d-flex justify-content-between border-bottom py-3">
-                <span className="d-block">Email Address</span>
-                <p className="mb-0">abc@coforge.com</p>
-              </div>
-              <div className="d-flex justify-content-between border-bottom py-3">
-                <span className="d-block">Contact Number</span>
-                <p className="mb-0">+91-9999999</p>
-              </div>
+              <ProfileView profileDetails={profile} />
               <div className="border-bottom py-3">
                 <span className="d-block fw-bold mb-2">Claim History</span>
                 <p className="mb-0 d-flex">
@@ -158,9 +152,11 @@ function ClaimPlaced() {
                 </p>
               </div>
               <div className="pt-4">
-                <button type="button" className="btn btn-primary py-2 px-4">
-                  Go to Claim Dashboard
-                </button>
+                <Button
+                  label="Go to Claim Dashboard"
+                  variant="primary"
+                  click={goToDashboard}
+                />
               </div>
             </div>
           </div>

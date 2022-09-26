@@ -1,17 +1,24 @@
 import React from "react";
 
-export const Datepicker = ({ name, label, value, onChange }) => {
+export const Input = ({
+  label,
+  type = "text",
+  value,
+  name,
+  onChange,
+  props,
+}) => {
   return (
-    <div>
+    <>
       <label className="form-label">{label}</label>
       <input
-        type="date"
-        className="form-control p-2"
+        type={type}
         name={name}
+        className="form-control"
         value={value}
         onChange={onChange}
-        placeholder="dd/mm/yyyy"
+        {...props}
       />
-    </div>
+    </>
   );
 };

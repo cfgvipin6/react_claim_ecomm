@@ -2,16 +2,16 @@ import React from "react";
 import ConfirmImg from "../../../assets/images/confirm-icon.png";
 import "./stepper.css";
 
-export const Stepper = ({ flag, pathName }) => {
-  const [flagData, setFlagData] = React.useState(flag);
+export const Stepper = ({current, total, flag, pathName }) => {
+  // const [flagData, setFlagData] = React.useState(flag);
   return (
     <>
       <div className="row justify-content-between py-3">
         <div className="col-auto">
-          <p className="mb-0 text-muted">Step 1 of 4</p>
+          <p className="mb-0 text-muted">Step {current} of {total}</p>
         </div>
         <div className="col-auto">
-          <p className="mb-0 text-muted">Next : {flagData}</p>
+          <p className="mb-0 text-muted">Next : {flag}</p>
         </div>
       </div>
       <div className="d-flex justify-content-between steps-bar mb-2">

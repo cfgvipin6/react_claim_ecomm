@@ -1,13 +1,14 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Datepicker, Dropdown, RadioBtn } from "../../components";
+import { Datepicker, Dropdown, RadioBtn, Button } from "../../components";
 import {
   DEVICE_TYPE,
   STILL_POSSESSION,
   DAMAGE_DEVICE,
 } from "../../constants/mockData";
 import { claimAdded } from "../claimSlice";
+import { showToast } from "../../utils/Helper";
 import "./fileClaim.css";
 
 const FileClaim = () => {
@@ -16,10 +17,11 @@ const FileClaim = () => {
   const { pathname } = location;
   const dispatch = useDispatch();
   const [data, setData] = useState({});
-  const [error, setError] = useState(null);
-  const [selected, setSelected] = useState("possession_device_y");
+  const claimsData = useSelector((state) => state.claims);
+
   const handleChange = (e) => {
     const { value, name } = e.target;
+    console.log("=========", name, value);
     setData({ ...data, [name]: value });
   };
 
@@ -31,12 +33,42 @@ const FileClaim = () => {
         })
       );
 
-      setError(null);
       history("/incidentInfo");
     } else {
-      setError("Fill in all fields"); // used in UI
+      showToast("Please fill details", "error");
     }
   };
+
+  useEffect(() => {
+    if (Object.keys(claimsData)?.length) {
+      const {
+        purchaseDate,
+        damagedDevice,
+        brand,
+        deviceType,
+        deviceNickName,
+        modal,
+        purchasePrice,
+        serialNo,
+        stillPossession,
+      } = claimsData;
+      const prevData = {
+        ...{
+          purchaseDate,
+          damagedDevice,
+          brand,
+          deviceType,
+          deviceNickName,
+          modal,
+          purchasePrice,
+          serialNo,
+          stillPossession,
+        },
+      };
+      // console.log("prevData", prevData);
+      setData({ ...data, ...prevData });
+    }
+  }, [claimsData]);
   return (
     <div className="w-75 mx-auto py-4">
       <div className="row g-0 py-4 align-items-center border-bottom">
@@ -93,12 +125,6 @@ const FileClaim = () => {
             onChange={handleChange}
           />
         ))}
-        {/* <RadioBtn
-          name="damagedDevice"
-          options={DAMAGE_DEVICE}
-          selectedValue={data?.damagedDevice}
-          onChange={handleChange}
-        /> */}
       </div>
       <div className="py-4">
         <span className="d-block fw-bold mb-3">
@@ -108,10 +134,10 @@ const FileClaim = () => {
         <div className="mb-3 w-50">
           <Dropdown
             label="Device Type"
-            onchange={handleChange}
+            onChange={handleChange}
             options={DEVICE_TYPE}
             name="deviceType"
-            value={data?.deviceType}
+            selectedValue={data?.deviceType}
           />
         </div>
         <div className="mb-3 w-50">
@@ -157,7 +183,7 @@ const FileClaim = () => {
         <div className="mb-3 w-50">
           <label className="form-label">Purchase Price, $</label>
           <input
-            type="text"
+            type="number"
             name="purchasePrice"
             className="form-control"
             value={data?.purchasePrice}
@@ -167,8 +193,8 @@ const FileClaim = () => {
         <div className="mb-3 w-50">
           <Datepicker
             label="Purchase Date"
-            name="PurchaseDate"
-            value={data?.PurchaseDate}
+            name="purchaseDate"
+            value={data?.purchaseDate}
             onChange={handleChange}
           />
         </div>
@@ -176,13 +202,7 @@ const FileClaim = () => {
           <p className="text-start py-3">
             Upon completion you'll be taken to our Assurant claims site.
           </p>
-          <button
-            type="button"
-            className="btn btn-primary py-2"
-            onClick={handleEvent}
-          >
-            Start A Claim
-          </button>
+          <Button label="Start A Claim" variant="primary" click={handleEvent} />
         </div>
       </div>
     </div>
