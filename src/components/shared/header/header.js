@@ -1,17 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PGH from "../../../assets/images/pgh-logo.svg";
-import PROFILE from "../../../assets/images/profileIcon.svg";
+import { NAV_MENU } from "../../../constants/mockData";
 import "./header.css";
-
-const NAV_MENU = [
-  { label: "Home", url: "/home" },
-  { label: "Account", url: "/account" },
-  { label: "My Devices", url: "/myDevices" },
-  { label: "Tech Services", url: "/techServices" },
-  { label: "File a Claim", url: "/fileClaim" },
-  { label: "Profile", url: "/profile" },
-];
 
 const Header = () => {
   const history = useNavigate();

@@ -112,23 +112,10 @@ function ServiceOptions() {
               <div className="row align-items-center justify-content-between pt-4">
                 <div className="col-auto">
                   <Button label="Back" variant="outline" />
-                  {/* <button
-                    type="button"
-                    className="btn btn-outline-primary py-2 px-4"
-                    onClick={stepBack}
-                  >
-                    Back
-                  </button> */}
+                  
                 </div>
                 <div className="col-auto">
                   <Button label="Next" variant="primary" click={handleStep} />
-                  {/* <button
-                    type="button"
-                    className="btn btn-primary py-2 px-4"
-                    onClick={handleStep}
-                  >
-                    Next
-                  </button> */}
                 </div>
               </div>
             </div>

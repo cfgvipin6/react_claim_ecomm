@@ -1,5 +1,5 @@
 import MaintenanceImg from "../assets/images/maintenance-icon.svg";
-
+import ScroorImg from "../assets/images/scroor.png";
 export const REASON_FOR_CLAIM = [
   { id: 1, label: "select", value: "" },
   { id: 2, label: "Hardware Issue", value: "hardware issue" },
@@ -29,11 +29,20 @@ export const MAILING_ADDRESS = [
   { label: "New Address" },
 ];
 
+export const NAV_MENU = [
+  { label: "Home", url: "/home" },
+  { label: "Account", url: "/account" },
+  { label: "My Devices", url: "/myDevices" },
+  { label: "Tech Services", url: "/techServices" },
+  { label: "File a Claim", url: "/fileClaim" },
+  { label: "Profile", url: "/profile" },
+];
+
 export const SERVICE_OPTIONS = [
   {
     id: 1,
     label: "Schedule a visit",
-    imgSrc: MaintenanceImg,
+    imgSrc: ScroorImg,
     description:
       "Make an appointment at an Pocket Geek Authorized Service Provider",
     deductPrice: "$89.00",
@@ -41,7 +50,7 @@ export const SERVICE_OPTIONS = [
   {
     id: 2,
     label: "Send in for repair",
-    imgSrc: MaintenanceImg,
+    imgSrc: ScroorImg,
     description:
       "A courier will pick up your product and deliver it to Pocket Geek",
     deductPrice: "$89.00",
@@ -49,7 +58,7 @@ export const SERVICE_OPTIONS = [
   {
     id: 3,
     label: "Contact us",
-    imgSrc: MaintenanceImg,
+    imgSrc: ScroorImg,
     description: "Talk to an Pocket Geek Support Advisor",
     deductPrice: "$89.00",
   },

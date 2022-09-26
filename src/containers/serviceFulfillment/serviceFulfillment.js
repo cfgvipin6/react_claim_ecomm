@@ -66,7 +66,7 @@ function ServiceFulfillment() {
               <ul className="list-inline pt-4">
                 {MAILING_ADDRESS.map((item, i) => (
                   <li
-                    className={`list-inline-item ${i != 0 && "ms-4"} `}
+                    className={`list-inline-item ${i !== 0 && "ms-4"} `}
                     key={`${item}_${i}`}
                   >
                     <RadioBtn
