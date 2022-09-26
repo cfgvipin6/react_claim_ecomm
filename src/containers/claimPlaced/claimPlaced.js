@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BarclayImg from "../../assets/images/barclay-card.png";
 import ConfirmImg from "../../assets/images/confirm-icon.png";
 import { ItemDetails, Button } from "../../components";

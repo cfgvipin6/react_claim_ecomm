@@ -22,9 +22,11 @@ function ServiceOptions() {
     );
     history("/serviceFulfillment");
   };
+
   const handleService = (selectedValue) => {
     setSelectedService(selectedValue);
   };
+
   useEffect(() => {
     const keys = Object.keys(claimsData);
     if (keys?.length && keys.includes("step2")) {
@@ -33,7 +35,7 @@ function ServiceOptions() {
       } = claimsData;
       // console.log("prevData", selectedService);
       handleService(selectedService);
-    }
+    } else if(!keys?.length) history("/fileClaim");
   }, [claimsData]);
 
   return (

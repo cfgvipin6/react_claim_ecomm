@@ -54,9 +54,9 @@ const IncidentInfo = () => {
       const {
         step1: { isComplete, data },
       } = claimsData;
-      // console.log("prevData", isComplete, data);
       setIncidentData({ ...incidentData, isComplete: isComplete, data: data });
     }
+     else if(!keys?.length) history("/fileClaim");
   }, [claimsData]);
 
   return (

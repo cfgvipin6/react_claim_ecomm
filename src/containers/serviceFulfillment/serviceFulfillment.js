@@ -37,7 +37,7 @@ function ServiceFulfillment() {
       } = claimsData;
       // console.log("prevData", step3);
       setData({ ...data, ...step3 });
-    }
+    } else if(!keys?.length) history("/fileClaim");
   }, [claimsData]);
 
   return (
@@ -95,13 +95,6 @@ function ServiceFulfillment() {
                 </div>
                 <div className="col-auto">
                   <Button label="Next" variant="primary" click={handleStep} />
-                  {/* <button
-                    type="button"
-                    className="btn btn-primary py-2 px-4"
-                    onClick={handleStep}
-                  >
-                    Next
-                  </button> */}
                 </div>
               </div>
             </div>

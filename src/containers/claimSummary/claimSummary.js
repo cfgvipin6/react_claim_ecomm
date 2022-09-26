@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button, ItemDetails, Stepper } from "../../components";
@@ -15,6 +15,10 @@ function ClaimSummary() {
   const handleStep = () => {
     history("/claimPlaced");
   };
+
+  useEffect(() => {
+    if (!Object.keys(storeData)?.length) history("/fileClaim");
+  }, [storeData]);
 
   return (
     <>
@@ -75,7 +79,7 @@ function ClaimSummary() {
                 </p>
               </div>
               <div className="d-flex justify-content-between border-bottom py-3">
-                <span className="d-block fw-bold">Personal Informaton</span>
+                <span className="d-block fw-bold">Personal Information</span>
                 <p className="mb-0 fw-bold">
                   <Link to="/profile">
                     <svg

@@ -22,6 +22,10 @@ import Profile from "./containers/profile/profile";
 import ServiceFulfillment from "./containers/serviceFulfillment/serviceFulfillment";
 import ServiceOptions from "./containers/serviceOptions/serviceOptions";
 import ThanksScreen from "./containers/thanksScreen/thanksScreen";
+import Home from "./containers/home/home";
+import Account from "./containers/account/account";
+import MyDevices from "./containers/myDevices/myDevices";
+import TechServices from "./containers/techServices/techServices";
 
 function App() {
   return (
@@ -31,7 +35,7 @@ function App() {
         <ClaimBar />
         <div className="container">
           <Routes>
-            <Route path="/" element={<Navigate replace to="/fileClaim" />} />
+            <Route path="/" element={<Navigate replace to="/home" />} />
             <Route path="/fileClaim" element={<FileClaim />} />
             <Route path="/profile" element={<Profile />} />
 
@@ -43,6 +47,10 @@ function App() {
             />
             <Route path="/claimSummary" element={<ClaimSummary />} />
             <Route path="/claimPlaced" element={<ClaimPlaced />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/myDevices" element={<MyDevices />} />
+            <Route path="/techServices" element={<TechServices />} />
             <Route path="/thanks" element={<ThanksScreen />} />
           </Routes>
         </div>
