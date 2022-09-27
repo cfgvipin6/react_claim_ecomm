@@ -6,3 +6,7 @@ export { Input } from "./shared/input/input";
 export { ItemDetails } from "./shared/itemDetails/itemDetails";
 export { RadioBtn } from "./shared/radio/radioBtn";
 export { Stepper } from "./shared/stepBar/stepper";
+export { ClaimBar } from "./shared/claimBar/claimBar";
+export { Footer } from "./shared/footer/footer";
+export { Header } from "./shared/header/header";
+export { Loader } from "./shared/loader";

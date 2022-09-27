@@ -7,11 +7,11 @@ import {
   STILL_POSSESSION,
   DAMAGE_DEVICE,
 } from "../../constants/mockData";
-import { claimAdded } from "../claimSlice";
+import { claimAdded } from "../../store/claimSlice";
 import { showToast } from "../../utils/Helper";
 import "./fileClaim.css";
 
-const FileClaim = () => {
+export const FileClaim = () => {
   const history = useNavigate();
   const location = useLocation();
   const { pathname } = location;
@@ -209,4 +209,3 @@ const FileClaim = () => {
   );
 };
 
-export default FileClaim;

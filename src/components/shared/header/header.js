@@ -4,7 +4,7 @@ import PGH from "../../../assets/images/pgh-logo.svg";
 import { NAV_MENU } from "../../../constants/mockData";
 import "./header.css";
 
-const Header = () => {
+export const Header = () => {
   const history = useNavigate();
   const [selectedItem, setSelectedItem] = useState("Home");
 
@@ -99,4 +99,3 @@ c75 -60 92 -153 41 -227 -37 -54 -90 -79 -155 -74 -58 5 -93 25 -128 72 -32
   );
 };
 
-export default Header;

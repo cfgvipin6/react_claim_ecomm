@@ -21,6 +21,9 @@ export const dateFormat = (date, format) => {
   }
 };
 
+export const generateRandomString = (length = 6) =>
+  (Math.random().toString(20).substr(2, length)).toUpperCase();
+
 export const showToast = (message, variant = "success") => {
   const toaster = toast[variant];
   return toaster(message, toasterStyle);

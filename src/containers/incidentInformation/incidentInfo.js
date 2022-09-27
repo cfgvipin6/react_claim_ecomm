@@ -10,10 +10,10 @@ import {
 } from "../../components";
 import { REASON_FOR_CLAIM } from "../../constants/mockData";
 import { showToast } from "../../utils/Helper";
-import { saveIncidentInfo } from "../claimSlice";
+import { saveIncidentInfo } from "../../store/claimSlice";
 import "./incidentInfo.css";
 
-const IncidentInfo = () => {
+export const IncidentInfo = () => {
   const claimsData = useSelector((state) => state.claims);
 
   const history = useNavigate();
@@ -149,4 +149,3 @@ const IncidentInfo = () => {
   );
 };
 
-export default IncidentInfo;

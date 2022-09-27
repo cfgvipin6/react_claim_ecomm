@@ -5,7 +5,7 @@ import { Button, ItemDetails, Stepper } from "../../components";
 import IncidentInfoView from "../incidentInformation/incidentInfoView";
 import ProfileView from "../profile/profileView";
 
-function ClaimSummary() {
+export const ClaimSummary = () => {
   const history = useNavigate();
   const location = useLocation();
   const { pathname } = location;
@@ -116,4 +116,3 @@ function ClaimSummary() {
   );
 }
 
-export default ClaimSummary;

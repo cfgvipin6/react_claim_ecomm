@@ -4,9 +4,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { ItemDetails, Stepper, Button } from "../../components";
 import { RadioBtn } from "../../components";
 import { MAILING_ADDRESS } from "../../constants/mockData";
-import { saveServiceFulfillment } from "../claimSlice";
+import { saveServiceFulfillment } from "../../store/claimSlice";
 
-function ServiceFulfillment() {
+export const ServiceFulfillment = () => {
   const [data, setData] = useState({});
   const history = useNavigate();
   const location = useLocation();
@@ -108,4 +108,3 @@ function ServiceFulfillment() {
   );
 }
 
-export default ServiceFulfillment;

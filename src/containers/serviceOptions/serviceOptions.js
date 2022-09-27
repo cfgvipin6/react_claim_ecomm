@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Card, ItemDetails, Stepper } from "../../components";
 import { SERVICE_OPTIONS } from "../../constants/mockData";
-import { saveServiceOptions } from "../claimSlice";
+import { saveServiceOptions } from "../../store/claimSlice";
 
-function ServiceOptions() {
+export const ServiceOptions = () => {
   const [selectedService, setSelectedService] = useState(null);
   const history = useNavigate();
   const location = useLocation();
@@ -129,4 +129,3 @@ function ServiceOptions() {
   );
 }
 
-export default ServiceOptions;

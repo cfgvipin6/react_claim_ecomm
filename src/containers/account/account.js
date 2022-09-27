@@ -1,7 +1,6 @@
 import React from "react";
 
-function Account() {
+export const Account = () => {
   return <div className="parent">Account Screen</div>;
 }
 
-export default Account;

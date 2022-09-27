@@ -6,8 +6,9 @@ import ConfirmImg from "../../assets/images/confirm-icon.png";
 import { ItemDetails, Button } from "../../components";
 import IncidentInfoView from "../incidentInformation/incidentInfoView";
 import ProfileView from "../profile/profileView";
+import { generateRandomString } from '../../utils/Helper';
 
-function ClaimPlaced() {
+export const ClaimPlaced = () => {
   const history = useNavigate();
   const storeData = useSelector((state) => state.claims);
   const { profile, step1 } = storeData;
@@ -41,7 +42,7 @@ function ClaimPlaced() {
             <div className="p-4">
               <div>
                 <span className="d-block fw-bold mb-2">
-                  Claim number: DX54343434RD3
+                  Claim number: {generateRandomString(10)}
                 </span>
                 <p className="text-muted">
                   There are many variations of passages of Lorem Ipsum
@@ -83,18 +84,6 @@ function ClaimPlaced() {
                 <span className="d-block fw-bold">Claim Details</span>
               </div>
               <IncidentInfoView incidentDetails={step1?.data} />
-              {/* <div className="d-flex justify-content-between border-bottom py-3">
-                <span className="d-block">Date of incident</span>
-                <p className="mb-0">03/10/2019</p>
-              </div>
-              <div className="d-flex justify-content-between border-bottom py-3">
-                <span className="d-block">Reason for claim</span>
-                <p className="mb-0">My device are not functioning.</p>
-              </div>
-              <div className="d-flex justify-content-between border-bottom py-3">
-                <span className="d-block">Description</span>
-                <p className="mb-0">Demo text here.</p>
-              </div> */}
               <div className="d-flex justify-content-between py-3">
                 <span className="d-block fw-bold">Fulfillment Information</span>
                 <p className="mb-0">
@@ -147,7 +136,7 @@ function ClaimPlaced() {
                   </svg>
                   <span>
                     Claim Submitted <br />
-                    Date Reported Aug 2nd, 2019
+                    Date Reported {new Date().toDateString()}
                   </span>
                 </p>
               </div>
@@ -169,4 +158,4 @@ function ClaimPlaced() {
   );
 }
 
-export default ClaimPlaced;
+

@@ -2,9 +2,9 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Button, Input } from "../../components";
-import { saveProfile } from "../claimSlice";
+import { saveProfile } from "../../store/claimSlice";
 
-const Profile = () => {
+export const Profile = () => {
   const profile = useSelector((state) => state.claims?.profile);
   const history = useNavigate();
   const [data, setData] = React.useState(profile ?? {});
@@ -76,4 +76,3 @@ const Profile = () => {
   );
 };
 
-export default Profile;

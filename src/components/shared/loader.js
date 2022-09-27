@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Spinner from "./spinner";
 
-const Loader = (props) => {
+export const Loader = (props) => {
   if (!props.show) {
     return null;
   }
@@ -34,4 +34,3 @@ const Loader = (props) => {
   return ReactDOM.createPortal(loaderContent, wrapper);
 };
 
-export default Loader;

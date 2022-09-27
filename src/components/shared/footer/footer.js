@@ -3,7 +3,7 @@ import './footer.css';
 import SSl from '../../../assets/images/ssl-logo.jpeg';
 import PCI from '../../../assets/images/pci-logo.jpeg';
 import AssurantFooter from '../../../assets/images/assurant-footer-logo.png';
-const Footer = () => {
+export const Footer = () => {
     return (
         <footer className="bg-primary footer py-3">
             <div className="container-fluid">
@@ -29,5 +29,3 @@ const Footer = () => {
         </footer>
     )
 }
-
-export default Footer;

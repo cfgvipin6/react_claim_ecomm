@@ -1,15 +1,22 @@
-import { createStore, applyMiddleware, combineReducers } from "redux";
-import thunkMiddleware from "redux-thunk";
-import transaction from "./transaction/reducer";
+import { configureStore } from "@reduxjs/toolkit";
+import claimReducer from "./claimSlice";
+import storage from "redux-persist/lib/storage";
+import { persistReducer, persistStore } from "redux-persist";
+import thunk from "redux-thunk";
 
-const appReducer = combineReducers({
-  transaction,
-});
-
-const rootReducer = (state, action) => {
-  return appReducer(state, action);
+const persistConfig = {
+  key: "root",
+  storage,
 };
 
-export default function store() {
-  return createStore(rootReducer, applyMiddleware(thunkMiddleware));
-}
+const persistedReducer = persistReducer(persistConfig, claimReducer);
+
+export const store = configureStore({
+  reducer: {
+    claims: persistedReducer,
+  },
+  devTools: process.env.NODE_ENV !== "production",
+  middleware: [thunk],
+});
+
+export const persistor = persistStore(store)

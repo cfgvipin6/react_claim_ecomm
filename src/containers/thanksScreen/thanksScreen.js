@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 // import "./thanks.css";
-const ThanksScreen = () => {
+export const ThanksScreen = () => {
   const storeData = useSelector((state) => state.claims);
   return (
     <>
@@ -14,4 +14,3 @@ const ThanksScreen = () => {
   );
 };
 
-export default ThanksScreen;

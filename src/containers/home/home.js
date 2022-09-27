@@ -1,7 +1,6 @@
 import React from "react";
 
-function Home() {
+export const Home = () => {
   return <div className="parent">Home Screen</div>;
 }
 
-export default Home;
