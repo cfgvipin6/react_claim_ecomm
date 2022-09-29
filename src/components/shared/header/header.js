@@ -21,12 +21,24 @@ export const Header = () => {
             <img src={PGH} alt="pgh" />
           </span>
           <ul className="nav ms-auto mb-0">
-            {NAV_MENU.map((item) => {
-              return item.label === "Profile" ? (
-                <li
-                  className="nav-item d-flex align-items-center justify-content-center c-pointer"
-                  onClick={() => navBarClickHandler(item)}
-                >
+            {NAV_MENU.map((item) => (
+              <li
+                className={`nav-item c-pointer ${
+                  item.label === "Profile" &&
+                  "d-flex align-items-center"
+                }`}
+                key={item.label}
+                onClick={() => navBarClickHandler(item)}
+              >
+                {item.label !== "Profile" ? (
+                  <span
+                    className={`nav-link ${
+                      selectedItem === item.label && "text-primary"
+                    }`}
+                  >
+                    {item.label}
+                  </span>
+                ) : (
                   <svg
                     version="1.0"
                     xmlns="http://www.w3.org/2000/svg"
@@ -66,36 +78,12 @@ c75 -60 92 -153 41 -227 -37 -54 -90 -79 -155 -74 -58 5 -93 25 -128 72 -32
                       />
                     </g>
                   </svg>
-                  {/* <svg
-                    src={PROFILE}
-                    alt="profile"
-                    style={{
-                      width: "50px",
-                      height: "40px",
-                      color: selectedItem === item.label ? "text-primary" : "",
-                    }}
-                  /> */}
-                </li>
-              ) : (
-                <li
-                  className="nav-item c-pointer"
-                  key={item.label}
-                  onClick={() => navBarClickHandler(item)}
-                >
-                  <span
-                    className={`nav-link ${
-                      selectedItem === item.label && "text-primary"
-                    }`}
-                  >
-                    {item.label}
-                  </span>
-                </li>
-              );
-            })}
+                )}
+              </li>
+            ))}
           </ul>
         </div>
       </header>
     </>
   );
 };
-

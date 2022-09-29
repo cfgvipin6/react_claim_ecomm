@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Datepicker, Dropdown, RadioBtn, Button } from "../../components";
 import {
   DEVICE_TYPE,
@@ -13,15 +13,12 @@ import "./fileClaim.css";
 
 export const FileClaim = () => {
   const history = useNavigate();
-  const location = useLocation();
-  const { pathname } = location;
   const dispatch = useDispatch();
   const [data, setData] = useState({});
   const claimsData = useSelector((state) => state.claims);
 
   const handleChange = (e) => {
     const { value, name } = e.target;
-    console.log("=========", name, value);
     setData({ ...data, [name]: value });
   };
 
