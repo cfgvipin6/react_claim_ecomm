@@ -10,3 +10,4 @@ export { Home } from "./home/home";
 export { Account } from "./account/account";
 export { MyDevices } from "./myDevices/myDevices";
 export { TechServices } from "./techServices/techServices";
+export { ProfileFormik } from "./profile/profileFormik";

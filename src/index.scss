@@ -49,9 +49,20 @@ input.form-select {
 }
 
 .form-label {
-  font-size: 14px;
+  font-size: 1rem;
   color: #063c60;
   font-weight: 600;
+}
+
+input.form-control,
+input.form-control:focus {
+  background-color: #f0f0ff;
+}
+
+.form-error {
+  color: red;
+  position: absolute;
+  font-size: .9rem;
 }
 
 .c-pointer {

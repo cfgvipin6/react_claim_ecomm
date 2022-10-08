@@ -27,7 +27,7 @@ export const Profile = () => {
       saveProfile({
         data,
       })
-    );    
+    );
     history(-1);
   };
   return (
@@ -69,10 +69,27 @@ export const Profile = () => {
           onChange={handleChange}
         />
       </div>
+      <div className="mb-3 w-50">
+        <Input
+          label="Password"
+          name="password"
+          type="password"
+          value={data?.password}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="mb-3 w-50">
+        <Input
+          label="Confirm Password"
+          name="confirmPassword"
+          type="password"
+          value={data?.confirmPassword}
+          onChange={handleChange}
+        />
+      </div>
       <div className="d-flex justify-content-end w-50">
         <Button label="Update Profile" variant="primary" click={handleEvent} />
       </div>
     </div>
   );
 };
-

@@ -5,7 +5,7 @@ export const Button = ({
   click = () => {},
   label = "Next",
   variant = "primary",
-  isDisabled = false,
+  ...props
 }) => {
   const history = useNavigate();
 
@@ -19,13 +19,10 @@ export const Button = ({
 
   return (
     <button
-      type="button"
       className={`btn py-2 px-4 ${
         variant === "outline" ? "btn-outline-primary" : "btn-primary"
       }`}
-      style={{cursor: (isDisabled ? 'not-allowed': 'pointer')}}
-      disabled={isDisabled}
-      onClick={handleClick}
+      {...props}
     >
       {label}
     </button>

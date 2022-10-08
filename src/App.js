@@ -25,6 +25,7 @@ import {
   Account,
   MyDevices,
   TechServices,
+  ProfileFormik
 } from "./containers";
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Navigate replace to="/home" />} />
             <Route path="/fileClaim" element={<FileClaim />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={<ProfileFormik />} />
 
             <Route path="/incidentInfo" element={<IncidentInfo />} />
             <Route path="/serviceOptions" element={<ServiceOptions />} />
